@@ -76,15 +76,40 @@ public class IntegerSamovar implements IntegerList {
         return item;
     }
 
-    @Override
-    public Integer add(Integer item, int index) {
-        if (index < 0 || size > index) {
-            throw new IllegalArgumentException("Индекс не может быть меньше 0!");
-        }
+    private void ex(Integer item,int index){
+
 
         if (item == null) {
             throw new IllegalArgumentException("Элемент не должен быть пустым!");
         }
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Индекс не может быть меньше 0!");
+        }
+
+    }
+    private void ex1(Integer item){
+
+
+        if (item == null) {
+            throw new IllegalArgumentException("Элемент не должен быть пустым!");
+        }
+
+
+    }
+    private void ex2(int index){
+
+
+
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Индекс не может быть меньше 0!");
+        }
+
+    }
+
+    @Override
+    public Integer add(Integer item, int index) {
+
+        ex(index,item);
         if (size == array.length) {
             grow();
         }
@@ -98,12 +123,7 @@ public class IntegerSamovar implements IntegerList {
 
     @Override
     public Integer set(int index, Integer item) {
-        if (item == null) {
-            throw new IllegalArgumentException("Значение не должно быть null!");
-        }
-        if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("Индекс не может быть меньше 0!");
-        }
+        ex(index,item);
         Integer replaced = array[index];
         array[index] = item;
         return replaced;
@@ -111,9 +131,7 @@ public class IntegerSamovar implements IntegerList {
 
     @Override
     public Integer remove(Integer item) {
-        if (item == null) {
-            throw new IllegalArgumentException("Значение не должно быть null!");
-        }
+        ex1(item);
         for (int i = 0; i < size; i++) {
             if (item.equals(array[i])) {
                 for (int j = i; j < size - 1; j++)
@@ -128,9 +146,7 @@ public class IntegerSamovar implements IntegerList {
 
     @Override
     public Integer remove(int index)  {
-        if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("Индекс не может быть меньше 0!");
-        }
+        ex2(index);
         Integer removeIndex = array[index];
         for (int i = index; i < size - 1; i++) {
             array[i] = array[i + 1];
@@ -142,9 +158,7 @@ public class IntegerSamovar implements IntegerList {
 
     @Override
     public boolean contains(Integer item) {
-        if (item == null) {
-            throw new IllegalArgumentException("Значение не должно быть null!");
-        }
+        ex1(item);
         for (int i = 0; i < size; i++) {
             if (array[i].equals(item)) {
                 return true;
@@ -155,9 +169,7 @@ public class IntegerSamovar implements IntegerList {
 
     @Override
     public int indexOf(Integer item) {
-        if (item == null) {
-            throw new IllegalArgumentException("Значение не должно быть null!");
-        }
+       ex1(item);
         for (int i = 0; i < size; i++) {
             if (array[i].equals(item)) {
                 return i;
@@ -168,9 +180,7 @@ public class IntegerSamovar implements IntegerList {
 
     @Override
     public int lastIndexOf(Integer item) {
-        if (item == null) {
-            throw new IllegalArgumentException("Значение не должно быть null!");
-        }
+        ex1(item);
         for (int i = size - 1; i >= 0; i--) {
             if (array[i].equals(item)) {
                 return i;
@@ -182,9 +192,7 @@ public class IntegerSamovar implements IntegerList {
 
     @Override
     public Integer get(int index) {
-        if (index < 0 || index >= size) {
-        throw new IllegalArgumentException("Индекс не может быть меньше 0!");
-    }
+        ex2(index);
         return array[index];
     }
 

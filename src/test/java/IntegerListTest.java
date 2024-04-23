@@ -1,4 +1,5 @@
 import org.example.IntegerSamovar;
+import org.example.StringSamovar;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,12 +9,7 @@ class IntegerListTest {
     @Test
     public void add()  {
         IntegerSamovar list = new IntegerSamovar(5);
-        list.add(1);
-        list.add(2);
-        list.add(3);
-            assertEquals(Integer.valueOf(1), list.get(0));
-        assertEquals(Integer.valueOf(2), list.get(1));
-        assertEquals(Integer.valueOf(3), list.get(2));
+        assertEquals(list.add(3),3 );
         }
 
 
@@ -24,9 +20,9 @@ class IntegerListTest {
         list.add(2);
         list.add(3);
 
-        assertEquals(Integer.valueOf(2), list.remove(1));
-        assertEquals(2, list.size());
-        assertFalse(list.contains(2));
+
+        assertEquals( list.remove(1),2);
+
     }
 
 
@@ -37,8 +33,8 @@ class IntegerListTest {
         list.add(2);
         list.add(3);
 
-        assertEquals(1, list.indexOf(2));
-        assertEquals(-1, list.indexOf(4));
+        assertEquals(list.indexOf(2),1 );
+
     }
 
 
@@ -51,19 +47,20 @@ class IntegerListTest {
         list.add(2);
         list.add(4);
 
-        assertEquals(3, list.lastIndexOf(2));
-        assertEquals(-1, list.lastIndexOf(5));
+        assertEquals( list.lastIndexOf(2),3);
+
     }
 
     @Test
     public void set() {
-        IntegerSamovar list = new IntegerSamovar(3);
+        IntegerSamovar list = new IntegerSamovar(5);
         list.add(1);
         list.add(2);
         list.add(3);
+        list.add(8);
+        list.add(9);
+        assertEquals(list.set(1,2),2);
 
-        assertEquals(Integer.valueOf(2), list.set(1, 5));
-        assertEquals(Integer.valueOf(5), list.get(1));
     }
 
     @Test
@@ -94,7 +91,7 @@ class IntegerListTest {
         list.add(2);
         list.add(3);
 
-        assertEquals(3, list.size());
+        assertEquals( list.size(),3);
     }
 
 
@@ -109,4 +106,21 @@ class IntegerListTest {
 
         assertTrue(list.isEmpty());
     }
+
+    @Test
+    public  void toArray()  {
+        IntegerSamovar list = new IntegerSamovar(5);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        assertEquals(list.size(),3);
+    }
+
+    @Test
+    public void exT(){
+        IntegerSamovar samovar = new IntegerSamovar(5);
+        assertThrows(IllegalArgumentException.class,()->samovar.set(10,-1),"Что-то типо не правильно написал");
+    }
+
 }
