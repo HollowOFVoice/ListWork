@@ -41,15 +41,16 @@ public class StringLIstTest {
     }
     @Test
     public void lastIndexOf() {
-        StringSamovar list = new StringSamovar(5);
+        StringSamovar list = new StringSamovar(10);
         list.add("1");
         list.add("2");
         list.add("3");
-        list.add("4");
         list.add("5");
+        list.add("6");
+        list.add("9");
 
-        assertEquals(3, list.lastIndexOf("2"));
-        assertEquals(-1, list.lastIndexOf("2"));
+        assertEquals(3, list.lastIndexOf("5"));
+        assertEquals(-1, list.lastIndexOf("10"));
     }
     @Test
     public void set() {
