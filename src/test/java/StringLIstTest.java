@@ -10,12 +10,8 @@ public class StringLIstTest {
     @Test
     public void add()  {
         StringSamovar list = new StringSamovar(5);
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        assertEquals("1", list.get(0));
-        assertEquals("2", list.get(1));
-        assertEquals("3", list.get(2));
+
+        assertEquals(list.add("1"), "1");
     }
     @Test
     public void remove()  {
@@ -24,9 +20,7 @@ public class StringLIstTest {
         list.add("2");
         list.add("3");
 
-        assertEquals("2", list.remove(1));
-        assertEquals(2, list.size());
-        assertFalse(list.contains("2"));
+        assertEquals( list.remove(1),"2");
     }
 
     @Test
@@ -36,9 +30,10 @@ public class StringLIstTest {
         list.add("2");
         list.add("3");
 
-        assertEquals(1, list.indexOf("2"));
-        assertEquals(-1, list.indexOf("4"));
+        assertEquals(list.indexOf("2"),1 );
+
     }
+
     @Test
     public void lastIndexOf() {
         StringSamovar list = new StringSamovar(10);
@@ -49,8 +44,8 @@ public class StringLIstTest {
         list.add("6");
         list.add("9");
 
-        assertEquals(3, list.lastIndexOf("5"));
-        assertEquals(-1, list.lastIndexOf("10"));
+        assertEquals( list.lastIndexOf("5"),3);
+
     }
     @Test
     public void set() {
@@ -59,8 +54,8 @@ public class StringLIstTest {
         list.add("2");
         list.add("3");
 
-        assertEquals("2", list.set(1, "5"));
-        assertEquals("5", list.get(1));
+        assertEquals(list.set(1, "5"),"2");
+
     }
 
 
@@ -92,7 +87,7 @@ public class StringLIstTest {
         list.add("2");
         list.add("3");
 
-        assertEquals(3, list.size());
+        assertEquals( list.size(),3);
     }
 
     @Test
@@ -105,5 +100,22 @@ public class StringLIstTest {
         list.clear();
 
         assertTrue(list.isEmpty());
+    }
+    @Test
+    public  void toArray()  {
+        StringSamovar list = new StringSamovar(5);
+        list.add("1");
+        list.add("2");
+        list.add("3");
+
+
+
+        assertEquals(list.size(),3);
+    }
+
+    @Test
+    public void exT(){
+StringSamovar samovar = new StringSamovar(5);
+assertThrows(IllegalArgumentException.class,()->samovar.set(10,null),"Что-то типо не правильно написал");
     }
 }

@@ -23,16 +23,24 @@ public class StringSamovar implements StringList{
         size++;
         return item;
     }
-    @Override
-    public String add(int index,String item) {
-        if (index < 0 || size > index) {
-            throw new IllegalArgumentException("Индекс не может быть меньше 0!");
-        }
+
+    private void ex(int index, String item){
+//        if (index < 0 || size > index) {
+//            throw new IllegalArgumentException("Индекс не может быть меньше 0!");
+//        }
 
         if (item == null) {
             throw new IllegalArgumentException("Элемент не должен быть пустым!");
         }
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Индекс не может быть меньше 0!");
+        }
 
+    }
+    @Override
+    public String add(int index,String item) {
+
+        ex(index,item);
         for (int i = size; i > index; i--) {
             myarray[i] = myarray[i - 1];
         }
@@ -42,12 +50,7 @@ public class StringSamovar implements StringList{
     }
     @Override
     public String set(int index, String item) {
-        if (item == null) {
-            throw new IllegalArgumentException("Значение не должно быть null!");
-        }
-        if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("Индекс не может быть меньше 0!");
-        }
+    ex(index,item);
         String replaced = myarray[index];
         myarray[index] = item;
         return replaced;
